@@ -1,0 +1,16 @@
+.message{
+	display: flex;
+}
+.message-preview{
+	margin: 20px;
+}
+.message-preview_image img {
+  display: block;
+}
+.message-preview_card {
+  padding: 5px;
+  margin: 20px;
+}
+.message-preview_card p {
+  color: #999;
+}

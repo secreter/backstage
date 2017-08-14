@@ -1,0 +1,23 @@
+
+.panel{
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+.panel_body{
+	flex-grow: 1;
+	height: 100%;
+	display: flex;
+
+}
+.panel_side-menu{
+	height: 100%;
+	width: 20%;
+	max-width: 240px ;
+	background: #404040;
+}
+.panel_main{
+	overflow: scroll;
+	flex-grow: 1;
+	padding: 20px;
+}
