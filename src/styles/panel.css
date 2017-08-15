@@ -21,3 +21,9 @@
 	flex-grow: 1;
 	padding: 20px;
 }
+.tree{
+	background: #fff;
+}
+/*"draft-js": "^0.10.1","react-umeditor": "^1.0.0-rc6",
+    "react-draft-editor": "^1.0.0",
+*/

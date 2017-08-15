@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Menu, Icon } from 'antd';
+import { Tree } from 'antd';
+
 import Data from './Data';
 import Message from './Message';
 import MyEditor from './Editor';
 import '../styles/panel.css';
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
   Route,
   Link,
-  
+  Switch
 } from 'react-router-dom'
-import {browserHistory} from 'react-router';
+const TreeNode = Tree.TreeNode;
+// import {browserHistory} from 'react-router';
 
 
 const SubMenu = Menu.SubMenu;
@@ -26,9 +29,11 @@ class Panel extends Component {
       current: e.key,
     });
   }
+  onSelect = (selectedKeys, info) => {
+    console.log('selected', selectedKeys, info);
+  }
   render() {
     return (
-	    <Router history={browserHistory}>
 	      <div className="panel">
 	      	<Menu
 		        onClick={this.handleClick}
@@ -99,17 +104,45 @@ class Panel extends Component {
 			            </SubMenu>
 			          </SubMenu>
 			        </Menu>
+
+			        <Tree
+				        showLine
+				        defaultExpandedKeys={['0-0-0']}
+				        onSelect={this.onSelect}
+				      >
+				        <TreeNode title="parent 1" key="0-0">
+				          <TreeNode title="parent 1-0" key="0-0-0">
+				            <TreeNode title="leaf" key="0-0-0-0" />
+				            <TreeNode title="leaf" key="0-0-0-1" />
+				            <TreeNode title="leaf" key="0-0-0-2" />
+				          </TreeNode>
+				          <TreeNode title="parent 1-1" key="0-0-1">
+				            <TreeNode title="leaf" key="0-0-1-0" />
+				          </TreeNode>
+				          <TreeNode title="parent 1-2" key="0-0-2">
+				            <TreeNode title="leaf" key="0-0-2-0" />
+				            <TreeNode title="leaf" key="0-0-2-1" />
+				          </TreeNode>
+				        </TreeNode>
+				      </Tree>
+
 			    </div>
 			    <div className="panel_main">
-			    	<Route path="/data" component={Data}/>
-			    	<Route path="/message" component={Message}/>
-			    	<Route path="/myEditor" component={MyEditor}/>
+			    	<Switch>
+				       	<Route path="/data" component={Data}/>
+				    	<Route path="/message" component={Message}/>
+				    	<Route path="/myEditor" component={MyEditor}/>
+				    	<Route path="/*" component={Data}/>
+				    </Switch>
 			    </div>
 	 	    </div>
 	      </div>
-	    </Router>
     );
   }
 }
 
 export default Panel;
+
+// <Route path="/data" component={Data}/>
+// 			    	<Route path="/message" component={Message}/>
+// 			    	<Route path="/myEditor" component={MyEditor}/>
